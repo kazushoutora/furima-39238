@@ -19,18 +19,17 @@
 
 ## itemsテーブル
 
-| Column           | Type       | Option
-| -----------------| ---------- | ------------------------------ |
-| image            | string     | null: false                    |
-| item_name        | text       | null: false                    |
-| item_description | text       | null: false                    |
-| category         | string　　　| null: false                    |
-| condition        | string     | null: false                    |
-| delivery_charges | string     | null: false                    |
-| delivery_from    | string     | null: false                    |
-| delivery_time    | string     | null: false                    |
-| price            | string　　　| null: false                    |
-| user_id          | references | null: false, foreign_key: true |
+| Column              | Type       | Option
+| ------------------- | ---------- | ------------------------------ |
+| item_name           | string     | null: false                    |
+| item_description    | text       | null: false                    |
+| category_id         | integer    | null: false                    |
+| condition_id        | integer    | null: false                    |
+| delivery_charges_id | integer    | null: false                    |
+| delivery_from_id    | integer    | null: false                    |
+| delivery_time_id    | integer    | null: false                    |
+| price               | string　　　| null: false                    |
+| user                | references | null: false, foreign_key: true |
 
 ## Association
 - belongs_to :user
@@ -39,13 +38,10 @@
 
 ## buysテーブル
 
-| Column        | Type       | Option
-| ------------- | ---------- | ------------------------------ |
-| card_number   | string　　　| null: false, unique: true      |
-| card_valid    | date       | null: false                    |
-| security_code | string     | null: false                    |
-| user_id       | references | null: false, foreign_key: true |
-| item_id       | references | null: false, foreign_key: true |
+| Column | Type       | Option
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
 ## Association
 - belongs_to :user
@@ -58,12 +54,12 @@
 | Column           | Type       | Option
 | ---------------- | ---------- | ------------------------------ |
 | postal_code      | string　　　| null: false                    |
-| prefectures      | text       | null: false                    |
-| municipalities   | text       | null: false                    |
-| house_number     | text       | null: false                    |
-| building_name    | text       | null: false                    |
-| telephone_number | string　　　| null: false, unique: true      |
-| buy_id           | references | null: false, foreign_key: true |
+| delivery_from    | string     | null: false                    |
+| municipalities   | string     | null: false                    |
+| house_number     | string     | null: false                    |
+| building_name    | string     |                                |
+| telephone_number | string　　　| null: false                    |
+| buy              | references | null: false, foreign_key: true |
 
 ## Association
 - belongs_to :buy
