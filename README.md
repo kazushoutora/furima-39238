@@ -28,7 +28,7 @@
 | delivery_charges_id | integer    | null: false                    |
 | delivery_from_id    | integer    | null: false                    |
 | delivery_time_id    | integer    | null: false                    |
-| price               | string　　　| null: false                    |
+| price               | integer    | null: false                    |
 | user                | references | null: false, foreign_key: true |
 
 ## Association
@@ -54,7 +54,7 @@
 | Column           | Type       | Option
 | ---------------- | ---------- | ------------------------------ |
 | postal_code      | string　　　| null: false                    |
-| delivery_from    | string     | null: false                    |
+| delivery_from_id | string     | null: false                    |
 | municipalities   | string     | null: false                    |
 | house_number     | string     | null: false                    |
 | building_name    | string     |                                |
