@@ -22,7 +22,7 @@ RSpec.describe User, type: :model do
         @user.email = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Email can't be blank")
-      end 
+      end
 
       it 'emailが重複すると登録できない' do
         @user.save
@@ -42,7 +42,7 @@ RSpec.describe User, type: :model do
         @user.password = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Password can't be blank")
-      end 
+      end
 
       it 'passwordが6文字未満では登録できない' do
         @user.password = '00000'
@@ -75,7 +75,7 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name can't be blank")
       end
-      
+
       it 'お名前（全角）は、名字を全角（漢字･ひらがな･カタカナ）で入力しないと登録できない' do
         @user.first_name = 'ﾔﾏﾀﾞ'
         @user.valid?
@@ -111,7 +111,7 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include('Last name yomi 全角カタカナのみで入力して下さい')
       end
-     
+
       it '生年月日が空だと登録できない' do
         @user.birth_date = ''
         @user.valid?
