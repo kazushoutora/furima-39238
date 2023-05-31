@@ -5,7 +5,6 @@ RSpec.describe Item, type: :model do
   describe '#create' do
   before do
     @item = FactoryBot.build(:item)
-    @item.image = fixture_file_upload("/20230530.png")
   end
 
   describe '商品出品機能' do
@@ -33,34 +32,46 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Item description can't be blank")
       end
       
-      it '商品のカテゴリーが空では出品できない' do
-        @item.category_id = ''
+      it '商品のカテゴリーに「---」が選択されている場合は出品できない' do
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
 
-      it '商品の状態が空では出品できない' do
-        @item.condition_id = ''
+      it '商品の状態に「---」が選択されている場合は出品できない' do
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
 
-      it '配送料の負担が空では出品できない' do
-        @item.delivery_charge_id = ''
+      it '配送料の負担に「---」が選択されている場合は出品できない' do
+        @item.delivery_charge_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery charge can't be blank")
       end
 
-      it '発送元の地域が空では出品できない' do
-        @item.delivery_from_id = ''
+      it '発送元の地域に「---」が選択されている場合は出品できない' do
+        @item.delivery_from_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery from can't be blank")
       end
 
-      it '発送までの日数が空では出品できない' do
-        @item.delivery_time_id = ''
+      it '発送までの日数に「---」が選択されている場合は出品できない' do
+        @item.delivery_time_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery time can't be blank")
+      end
+      
+      it '価格が空では出品できない' do
+        @item.price = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price can't be blank")
+      end
+      
+      it '価格に半角数字以外が含まれている場合は出品できない' do
+        @item.price = '５０００'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
       end
 
       it '販売価格が¥300より少ないと出品できない' do
@@ -74,38 +85,14 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
+
+      it 'ユーザーが紐付いていなければ投稿できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')
+      end
     end
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 end
 

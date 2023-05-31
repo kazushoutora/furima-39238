@@ -8,10 +8,8 @@ class Item < ApplicationRecord
   validates :delivery_charge_id,  presence: true 
   validates :delivery_from_id,    presence: true 
   validates :delivery_time_id,    presence: true 
-  with_options presence: true, format: { with: /\A[0-9]+\z/ } do  
-    validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 },
+  validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 },
                       presence: {message: "can't be blank" }
-  end
 
   has_one_attached :image
   belongs_to :user
