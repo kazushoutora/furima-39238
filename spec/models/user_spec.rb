@@ -52,24 +52,24 @@ RSpec.describe User, type: :model do
       end
 
       it 'passwordが数字だけだと登録できない' do
-        @user.password = '11111111'
+        @user.password ='11111111'
         @user.password_confirmation = '11111111'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Password には半角英数を両方含む必要があります')
+        expect(@user.errors.full_messages).to include("Password パスワードには半角英字と半角数字の両方を含めて設定してください")
       end
 
       it 'passwordが英字だけだと登録できない' do
         @user.password = 'aaaaaaaa'
         @user.password_confirmation = 'aaaaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Password には半角英数を両方含む必要があります')
+        expect(@user.errors.full_messages).to include("Password パスワードには半角英字と半角数字の両方を含めて設定してください")
       end
 
       it 'passwordが全角だと登録できない' do
         @user.password = 'ああああああ'
         @user.password_confirmation = 'ああああああ'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Password には半角英数を両方含む必要があります')
+        expect(@user.errors.full_messages).to include("Password パスワードには半角英字と半角数字の両方を含めて設定してください")
       end
 
       it 'passwordとpassword_confirmationが不一致では登録できない' do
