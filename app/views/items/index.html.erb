@@ -118,9 +118,8 @@
       </li>
     </ul>
   </div>
-  <%# /FURIMAの特徴 %>
 
-  <%# 商品一覧 %>
+
   <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
     <div class="subtitle" >
@@ -132,8 +131,7 @@
   <% unless @items[0].nil? %>
     <% @items.each do |item| %>
       <li class='list'>
-        <%= link_to '#' do %>
-        
+        <%= link_to item_path(item.id) do %>
         <div class='item-info'>
           <%= image_tag item.image.variant(resize_to_fill: [260, 250]) %>
           <h3 class='item-name'>
@@ -172,7 +170,7 @@
   <% end %>
     </ul>
   </div>
-  <%# /商品一覧 %>
+  
 </div>
 <%= link_to(new_item_path, class: 'purchase-btn') do %>
   <span class='purchase-btn-text'>出品する</span>
