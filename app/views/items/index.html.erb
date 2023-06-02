@@ -133,7 +133,6 @@
     <% @items.each do |item| %>
       <li class='list'>
         <%= link_to item_path(item.id) do %>
-        
         <div class='item-info'>
           <%= image_tag item.image.variant(resize_to_fill: [260, 250]) %>
           <h3 class='item-name'>
