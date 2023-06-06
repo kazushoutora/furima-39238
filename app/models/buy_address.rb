@@ -1,7 +1,7 @@
 
 class BuyAddress 
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postal_code, :delivery_from_id, :municipality, :house_number, :building_name, :telephone_number
+  attr_accessor :price, :token, :user_id, :item_id, :postal_code, :delivery_from_id, :municipality, :house_number, :building_name, :telephone_number
 
   with_options presence: true do
     validates :address
@@ -12,6 +12,7 @@ class BuyAddress
     validates :house_number
     validates :telephone_number, format: {with:/\A\d{10,11}\z/, message: "は10桁以上11桁以内で入力してください"}
     validates :delivery_from_id, numericality: {other_than: 1, message: "can't be blank"}
+    validates :token
   end
   
   def address

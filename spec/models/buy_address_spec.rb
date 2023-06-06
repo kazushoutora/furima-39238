@@ -7,16 +7,22 @@ RSpec.describe BuyAddress, type: :model do
       @user = FactoryBot.create(:user)
       @item = FactoryBot.create(:item)
       @buy_address = FactoryBot.build(:buy_address, user_id: @user.id, item_id: @item.id)
+      @buy_address.price = @item.price
     end
 
     context '購入内容に問題ない場合' do
       it 'すべての値が正しく入力されていれば購入できること' do
         expect(@buy_address).to be_valid
       end
-      it 'building_nameは空でも保存できること' do
+      it 'building_nameは空でも購入できること' do
         @buy_address.building_name = ''
         expect(@buy_address).to be_valid
       end
+
+      it "priceとtokenがあれば購入ができること" do
+        expect(@buy_address).to be_valid
+      end
+
     end
 
     context '購入内容に問題がある場合' do
@@ -84,6 +90,12 @@ RSpec.describe BuyAddress, type: :model do
         @buy_address.item_id = nil
         @buy_address.valid?
         expect(@buy_address.errors.full_messages).to include("Item can't be blank")
+      end
+    
+      it "tokenが空では購入できない" do
+        @buy_address.token = nil
+        @buy_address.valid?
+        expect(@buy_address.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
