@@ -1,7 +1,13 @@
 class BuysController < ApplicationController
+  before_action :authenticate_user!
   def index
     @item = Item.find(params[:item_id])
     @buy_address = BuyAddress.new
+    if @item.buy.present? || current_user == @item.user
+      redirect_to root_path
+    else
+      render :index
+    end
   end
 
   def new
@@ -34,5 +40,4 @@ class BuysController < ApplicationController
       currency: 'jpy'
     )
   end
-
 end
