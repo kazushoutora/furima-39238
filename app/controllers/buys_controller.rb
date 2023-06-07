@@ -3,7 +3,6 @@ class BuysController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @item = Item.find(params[:item_id])
     @buy_address = BuyAddress.new
     if @item.buy.present? || current_user == @item.user
       redirect_to root_path
@@ -13,7 +12,6 @@ class BuysController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @buy_address = BuyAddress.new(buy_params)
     if @buy_address.valid?
       pay_item
