@@ -1,5 +1,7 @@
 class BuysController < ApplicationController
+  before_action :set_item, only: [:index, :create]
   before_action :authenticate_user!
+
   def index
     @item = Item.find(params[:item_id])
     @buy_address = BuyAddress.new
@@ -8,10 +10,6 @@ class BuysController < ApplicationController
     else
       render :index
     end
-  end
-
-  def new
-    @buy_address = BuyAddress.new
   end
 
   def create
@@ -42,4 +40,9 @@ class BuysController < ApplicationController
       currency: 'jpy'
     )
   end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
 end

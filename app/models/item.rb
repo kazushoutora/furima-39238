@@ -18,7 +18,6 @@ class Item < ApplicationRecord
   belongs_to       :delivery_from
   belongs_to       :delivery_time
   has_one          :buy
-  has_many         :buys
   has_one_attached :image
 
   validates :category_id, :condition_id, :delivery_charge_id, :delivery_from_id, :delivery_time_id,
