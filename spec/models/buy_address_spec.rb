@@ -19,10 +19,9 @@ RSpec.describe BuyAddress, type: :model do
         expect(@buy_address).to be_valid
       end
 
-      it "priceとtokenがあれば購入ができること" do
+      it 'priceとtokenがあれば購入ができること' do
         expect(@buy_address).to be_valid
       end
-
     end
 
     context '購入内容に問題がある場合' do
@@ -35,7 +34,7 @@ RSpec.describe BuyAddress, type: :model do
       it '郵便番号が『3桁ハイフン4桁』半角数字でないと購入できない' do
         @buy_address.postal_code = '1235678'
         @buy_address.valid?
-        expect(@buy_address.errors.full_messages).to include("Postal code は『3桁ハイフン4桁』半角数字で入力してください")
+        expect(@buy_address.errors.full_messages).to include('Postal code は『3桁ハイフン4桁』半角数字で入力してください')
       end
 
       it '都道府県に「---」が選択されている場合は購入できない' do
@@ -61,23 +60,23 @@ RSpec.describe BuyAddress, type: :model do
         @buy_address.valid?
         expect(@buy_address.errors.full_messages).to include("Telephone number can't be blank")
       end
-       
+
       it '電話番号が9桁以下だと購入できないこと' do
         @buy_address.telephone_number = '0901212'
         @buy_address.valid?
-        expect(@buy_address.errors.full_messages).to include("Telephone number は10桁以上11桁以内で入力してください")
+        expect(@buy_address.errors.full_messages).to include('Telephone number は10桁以上11桁以内で入力してください')
       end
-      
+
       it '電話番号が12桁以上だと購入できないこと' do
         @buy_address.telephone_number = '090121234345'
         @buy_address.valid?
-        expect(@buy_address.errors.full_messages).to include("Telephone number は10桁以上11桁以内で入力してください")
+        expect(@buy_address.errors.full_messages).to include('Telephone number は10桁以上11桁以内で入力してください')
       end
 
       it '電話番号が全角数字だと購入できない' do
         @buy_address.telephone_number = '０９０７８７８１２３４'
         @buy_address.valid?
-        expect(@buy_address.errors.full_messages).to include("Telephone number は10桁以上11桁以内で入力してください")
+        expect(@buy_address.errors.full_messages).to include('Telephone number は10桁以上11桁以内で入力してください')
       end
 
       it 'user_idが紐づいていなければ購入できないこと' do
@@ -91,8 +90,8 @@ RSpec.describe BuyAddress, type: :model do
         @buy_address.valid?
         expect(@buy_address.errors.full_messages).to include("Item can't be blank")
       end
-    
-      it "tokenが空では購入できない" do
+
+      it 'tokenが空では購入できない' do
         @buy_address.token = nil
         @buy_address.valid?
         expect(@buy_address.errors.full_messages).to include("Token can't be blank")
@@ -100,5 +99,3 @@ RSpec.describe BuyAddress, type: :model do
     end
   end
 end
-
-
