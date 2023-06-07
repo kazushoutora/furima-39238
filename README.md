@@ -53,12 +53,12 @@
 
 | Column           | Type       | Option
 | ---------------- | ---------- | ------------------------------ |
-| postal_code      | string　　　| null: false                    |
+| postal_code      | string     | null: false                    |
 | delivery_from_id | integer    | null: false                    |
-| municipalities   | string     | null: false                    |
+| municipality     | string     | null: false                    |
 | house_number     | string     | null: false                    |
 | building_name    | string     |                                |
-| telephone_number | string　　　| null: false                    |
+| telephone_number | string     | null: false                    |
 | buy              | references | null: false, foreign_key: true |
 
 ## Association

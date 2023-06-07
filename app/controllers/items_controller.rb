@@ -24,7 +24,11 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    redirect_to root_path unless current_user.id == @item.user_id
+    if @item.buy.present? || current_user != @item.user
+      redirect_to root_path
+    else
+      render :index
+    end
   end
 
   def update
