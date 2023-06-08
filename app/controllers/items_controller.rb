@@ -26,8 +26,6 @@ class ItemsController < ApplicationController
   def edit
     if @item.buy.present? || current_user != @item.user
       redirect_to root_path
-    else
-      render :index
     end
   end
 
@@ -44,8 +42,6 @@ class ItemsController < ApplicationController
 
     if @item.destroy
       redirect_to root_path
-    else
-      render :index
     end
   end
 
