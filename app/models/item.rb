@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   validates :delivery_from_id,    presence: true
   validates :delivery_time_id,    presence: true
   validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 },
-                    presence: { message: "can't be blank" }
+                    presence: { message: "を入力してください" }
 
   belongs_to       :user
   belongs_to       :category
@@ -21,5 +21,5 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   validates :category_id, :condition_id, :delivery_charge_id, :delivery_from_id, :delivery_time_id,
-            numericality: { other_than: 1, message: "can't be blank" }
+            numericality: { other_than: 1, message: "を入力してくだい" }
 end
